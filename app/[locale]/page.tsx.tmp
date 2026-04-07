@@ -1,0 +1,86 @@
+import Image from "next/image";
+import Link from "next/link";
+import { getTranslations } from "next-intl/server";
+import { 
+  Brain, 
+  Bot, 
+  Lightbulb, 
+  ChevronRight, 
+  ChevronLeft,
+  GraduationCap,
+  Users,
+  Clock,
+  Star,
+  Award,
+  Zap,
+  BookOpen,
+  Globe,
+  Mail,
+  MapPin,
+  Phone,
+  ArrowRight
+} from "lucide-react";
+import { Carousel } from "@/components/ui/carousel";
+import { LanguageSwitcher } from "@/components/ui/language-switcher";
+
+export default async function LandingPage({ 
+  params
+}: { 
+  params: Promise<{ locale: string }> 
+}) {
+  const { locale } = await params;
+  const t = await getTranslations("landing");
+  const isRTL = locale === "ar";
+
+  // School photos for carousel - using uploaded images
+  const schoolPhotos = [
+    {
+      src: "/images/avicenne/carousel-1.jpg",
+      alt: locale === "ar" ? "نشاط مدرسي بمدرسة ابن سينا" : "School activity at Avicenne",
+      caption: locale === "ar" 
+        ? "مسرحية تربوية مقتبسة من نص التلقيح المدرسي" 
+        : "Educational theater activity",
+    },
+    {
+      src: "/images/avicenne/carousel-2.jpg",
+      alt: locale === "ar" ? "مشروع تلاميذ" : "Student project",
+      caption: locale === "ar" 
+        ? "MINI PROJET: MA FAMILLE - السنة الثالثة" 
+        : "Mini projet: Ma famille - 3eme annee",
+    },
+    {
+      src: "/images/avicenne/carousel-3.jpeg",
+      alt: locale === "ar" ? "تعلم تعاوني" : "Collaborative learning",
+      caption: locale === "ar" 
+        ? "مشروع السنة الخامسة: عرض أعمال التلاميذ" 
+        : "Fifth-year student project showcase",
+    },
+  ];
+
+  const programs = [
+    {
+      icon: Brain,
+      title: t("programs.ai.title"),
+      description: t("programs.ai.description"),
+      color: "from-violet-500 to-purple-600",
+    },
+    {
+      icon: Bot,
+      title: t("programs.robotics.title"),
+      description: t("programs.robotics.description"),
+      color: "from-blue-500 to-cyan-600",
+    },
+    {
+      icon: Lightbulb,
+      title: t("programs.creative.title"),
+      description: t("programs.creative.description"),
+      color: "from-amber-500 to-orange-600",
+    },
+  ];
+
+  const stats = [
+    { icon: GraduationCap, value: "120+", label: locale === "ar" ? "طالب" : "Students" },
+    { icon: Users, value: "12", label: locale === "ar" ? "معلم" : "Teachers" },
+    { icon: Clock, value: "2025", label: locale === "ar" ? "سنة التأسيس" : "Founded" },
+  ];
+
