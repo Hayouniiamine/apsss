@@ -29,5 +29,6 @@ export default function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/((?!_next|api|.*\\..*).*)"],
+  runtime: "nodejs",
+  matcher: ["/((?!api|trpc|_next|_vercel|.*\\..*).*)"],
 };
