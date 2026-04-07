@@ -1,12 +1,12 @@
 {
   "/_not-found/page": "/_not-found",
-  "/[locale]/login/page": "/[locale]/login",
   "/[locale]/page": "/[locale]",
+  "/[locale]/login/page": "/[locale]/login",
   "/[locale]/(dashboard)/admin/announcements/page": "/[locale]/admin/announcements",
   "/[locale]/(dashboard)/dashboard/page": "/[locale]/dashboard",
-  "/[locale]/(dashboard)/parent/child/page": "/[locale]/parent/child",
-  "/[locale]/(dashboard)/teacher/grades/page": "/[locale]/teacher/grades",
+  "/[locale]/(dashboard)/student/courses/page": "/[locale]/student/courses",
   "/[locale]/(dashboard)/admin/students/page": "/[locale]/admin/students",
   "/[locale]/(dashboard)/teacher/courses/page": "/[locale]/teacher/courses",
-  "/[locale]/(dashboard)/student/courses/page": "/[locale]/student/courses"
+  "/[locale]/(dashboard)/parent/child/page": "/[locale]/parent/child",
+  "/[locale]/(dashboard)/teacher/grades/page": "/[locale]/teacher/grades"
 }

@@ -26,27 +26,58 @@ export const mockUsers: User[] = [
 ];
 
 export const mockClasses: Class[] = [
-  { id: '1', name: 'الصف الأول أ', grade: 1, teacherId: '2', studentCount: 25, room: '101' },
-  { id: '2', name: 'الصف الأول ب', grade: 1, teacherId: '3', studentCount: 23, room: '102' },
-  { id: '3', name: 'الصف الثاني أ', grade: 2, teacherId: '2', studentCount: 24, room: '201' },
-  { id: '4', name: 'الصف الثالث أ', grade: 3, teacherId: '3', studentCount: 22, room: '301' },
+  { id: '1', name: '1ere annee primaire', grade: 1, teacherId: '2', studentCount: 10, room: '101' },
+  { id: '2', name: '2eme annee primaire', grade: 2, teacherId: '3', studentCount: 10, room: '102' },
+  { id: '3', name: '3eme annee primaire', grade: 3, teacherId: '10', studentCount: 10, room: '201' },
+  { id: '4', name: '4eme annee primaire', grade: 4, teacherId: '11', studentCount: 10, room: '202' },
+  { id: '5', name: '5eme annee primaire', grade: 5, teacherId: '12', studentCount: 10, room: '301' },
+  { id: '6', name: '6eme annee primaire', grade: 6, teacherId: '13', studentCount: 10, room: '302' },
 ];
 
 export const mockTeachers: Teacher[] = [
   { id: '2', userId: '2', name: 'أستاذ أحمد', subjects: ['الرياضيات', 'العلوم'], classIds: ['1', '3'], email: 'teacher1@ecoleavicenne.tn' },
   { id: '3', userId: '3', name: 'أستاذة فاطمة', subjects: ['اللغة العربية', 'الاجتماعيات'], classIds: ['2', '4'], email: 'teacher2@ecoleavicenne.tn' },
+  { id: '10', userId: '10', name: 'Teacher 3', subjects: ['Math'], classIds: ['3'], email: 'teacher3@ecoleavicenne.tn' },
+  { id: '11', userId: '11', name: 'Teacher 4', subjects: ['French'], classIds: ['4'], email: 'teacher4@ecoleavicenne.tn' },
+  { id: '12', userId: '12', name: 'Teacher 5', subjects: ['Science'], classIds: ['5'], email: 'teacher5@ecoleavicenne.tn' },
+  { id: '13', userId: '13', name: 'Teacher 6', subjects: ['Arabic'], classIds: ['6'], email: 'teacher6@ecoleavicenne.tn' },
+  { id: '14', userId: '14', name: 'Teacher 7', subjects: ['History'], classIds: ['1'], email: 'teacher7@ecoleavicenne.tn' },
+  { id: '15', userId: '15', name: 'Teacher 8', subjects: ['Geography'], classIds: ['2'], email: 'teacher8@ecoleavicenne.tn' },
+  { id: '16', userId: '16', name: 'Teacher 9', subjects: ['Sport'], classIds: ['5'], email: 'teacher9@ecoleavicenne.tn' },
+  { id: '17', userId: '17', name: 'Teacher 10', subjects: ['Arts'], classIds: ['6'], email: 'teacher10@ecoleavicenne.tn' },
 ];
 
-export const mockStudents: Student[] = [
-  { id: '6', userId: '6', name: 'محمد علي', classId: '1', parentId: '4', dateOfBirth: '2018-05-15' },
-  { id: '7', userId: '7', name: 'سارة أحمد', classId: '2', parentId: '5', dateOfBirth: '2017-08-20' },
-  { id: '8', userId: '8', name: 'أحمد خالد', classId: '1', parentId: '4', dateOfBirth: '2018-03-10' },
+const studentFirstNames = [
+  'محمد', 'سارة', 'أحمد', 'آية', 'يوسف', 'مريم', 'ليان', 'علي', 'نور', 'خديجة',
+];
+const studentLastNames = [
+  'علي', 'بن سالم', 'الخميري', 'العموري', 'حمدي', 'الدريدي', 'بن محمود', 'الزغلامي', 'السالمي', 'الطرابلسي',
 ];
 
-export const mockParents: Parent[] = [
-  { id: '4', userId: '4', name: 'ولي أمر محمد', children: ['6', '8'], phone: '+213550000001', email: 'parent1@email.com' },
-  { id: '5', userId: '5', name: 'ولي أمر سارة', children: ['7'], phone: '+213550000002', email: 'parent2@email.com' },
-];
+export const mockStudents: Student[] = mockClasses.flatMap((cls, classIndex) =>
+  Array.from({ length: 10 }, (_, i) => {
+    const number = classIndex * 10 + i;
+    const id = String(6 + number);
+    const parentId = String(4 + number);
+    return {
+      id,
+      userId: id,
+      name: `${studentFirstNames[i]} ${studentLastNames[classIndex % studentLastNames.length]}`,
+      classId: cls.id,
+      parentId,
+      dateOfBirth: `201${(classIndex % 4) + 4}-0${(i % 8) + 1}-1${i % 9}`,
+    };
+  })
+);
+
+export const mockParents: Parent[] = mockStudents.map((student, i) => ({
+  id: student.parentId,
+  userId: student.parentId,
+  name: `ولي أمر ${student.name}`,
+  children: [student.id],
+  phone: `+2169700${String(100 + i).padStart(3, '0')}`,
+  email: `parent${i + 1}@email.com`,
+}));
 
 export const mockCourses: Course[] = [
   { id: '1', title: 'الرياضيات الأساسية', description: 'مبادئ الرياضيات للصف الأول', classId: '1', teacherId: '2', subject: 'الرياضيات', createdAt: '2025-01-01' },
@@ -78,13 +109,28 @@ export const mockHomeworks: Homework[] = [
   },
 ];
 
-export const mockGrades: Grade[] = [
-  { id: '1', studentId: '6', courseId: '1', score: 18, maxScore: 20, comment: 'أداء ممتاز', date: '2025-01-15', type: 'exam' },
-  { id: '2', studentId: '6', courseId: '2', score: 16, maxScore: 20, comment: 'جيد جداً', date: '2025-01-16', type: 'quiz' },
-  { id: '3', studentId: '6', courseId: '3', score: 19, maxScore: 20, comment: 'ممتاز', date: '2025-01-17', type: 'homework' },
-  { id: '4', studentId: '7', courseId: '4', score: 17, maxScore: 20, comment: 'جيد', date: '2025-01-15', type: 'exam' },
-  { id: '5', studentId: '8', courseId: '1', score: 15, maxScore: 20, comment: 'يحتاج لمزيد من الجهد', date: '2025-01-15', type: 'exam' },
-];
+export const mockGrades: Grade[] = mockStudents.flatMap((student, idx) => [
+  {
+    id: `g-${student.id}-1`,
+    studentId: student.id,
+    courseId: '1',
+    score: 12 + (idx % 9),
+    maxScore: 20,
+    comment: 'Progression stable',
+    date: '2025-01-15',
+    type: 'exam',
+  },
+  {
+    id: `g-${student.id}-2`,
+    studentId: student.id,
+    courseId: '2',
+    score: 11 + (idx % 8),
+    maxScore: 20,
+    comment: 'Bon travail',
+    date: '2025-01-20',
+    type: 'quiz',
+  },
+]);
 
 export const mockActivities: Activity[] = [
   {
@@ -131,41 +177,66 @@ export const mockActivities: Activity[] = [
   },
 ];
 
-export const mockAttendance: Attendance[] = [
-  { id: '1', studentId: '6', date: '2025-01-20', status: 'present' },
-  { id: '2', studentId: '6', date: '2025-01-19', status: 'present' },
-  { id: '3', studentId: '6', date: '2025-01-18', status: 'absent', note: 'مريض' },
-  { id: '4', studentId: '7', date: '2025-01-20', status: 'present' },
-  { id: '5', studentId: '8', date: '2025-01-20', status: 'late' },
+export const mockAttendance: Attendance[] = mockStudents.flatMap((student, idx) => [
+  { id: `a-${student.id}-1`, studentId: student.id, date: '2025-01-20', status: 'present' },
+  { id: `a-${student.id}-2`, studentId: student.id, date: '2025-01-19', status: idx % 5 === 0 ? 'absent' : 'present', note: idx % 5 === 0 ? 'Sick leave' : undefined },
+  { id: `a-${student.id}-3`, studentId: student.id, date: '2025-01-18', status: idx % 7 === 0 ? 'late' : 'present' },
+]);
+
+const remarkMessages = [
+  'Excellent participation in class.',
+  'Needs to improve homework consistency.',
+  'Shows leadership in group activities.',
+  'Reading progress is very positive.',
+  'Should focus more during math exercises.',
+  'Respectful behavior with classmates.',
+  'Can improve handwriting and presentation.',
+  'Strong oral communication skills.',
+  'Requires more revision before quizzes.',
+  'Great effort this week, keep going.',
 ];
 
-export const mockRemarks: Remark[] = [
-  {
-    id: 'r-1',
-    studentId: '6',
-    teacherId: '2',
-    parentId: '4',
-    message: 'محمد نشيط في القسم لكنه يحتاج مراجعة يومية في الإملاء.',
+const remarkTeacherIds = ['2', '3', '10', '11', '12', '13', '14', '15', '16', '17'];
+
+export const mockRemarks: Remark[] = mockStudents.flatMap((student) =>
+  remarkTeacherIds.map((teacherId, i) => ({
+    id: `r-${student.id}-${teacherId}`,
+    studentId: student.id,
+    teacherId,
+    parentId: student.parentId,
+    message: remarkMessages[i],
     visibility: 'parent-only',
-    createdAt: '2025-01-19',
-  },
-  {
-    id: 'r-2',
-    studentId: '7',
-    teacherId: '3',
-    parentId: '5',
-    message: 'Sara participe très bien. Merci de renforcer la lecture à la maison.',
-    visibility: 'parent-only',
-    createdAt: '2025-01-20',
-  },
+    createdAt: `2025-01-${String((i % 9) + 11).padStart(2, '0')}`,
+  }))
+);
+
+const paymentMonths = [
+  '2025-01',
+  '2025-02',
+  '2025-03',
+  '2025-04',
+  '2025-05',
+  '2025-06',
+  '2025-07',
+  '2025-08',
+  '2025-09',
 ];
 
-export const mockPayments: PaymentStatus[] = [
-  { id: 'p-1', studentId: '6', month: '2025-01', amount: 180, status: 'paid', updatedAt: '2025-01-03' },
-  { id: 'p-2', studentId: '6', month: '2025-02', amount: 180, status: 'pending', updatedAt: '2025-02-02' },
-  { id: 'p-3', studentId: '7', month: '2025-01', amount: 180, status: 'paid', updatedAt: '2025-01-04' },
-  { id: 'p-4', studentId: '8', month: '2025-01', amount: 180, status: 'overdue', updatedAt: '2025-01-20' },
-];
+export const mockPayments: PaymentStatus[] = mockStudents.flatMap((student, idx) =>
+  paymentMonths.map((month, monthIndex) => ({
+    id: `p-${student.id}-${month}`,
+    studentId: student.id,
+    month,
+    amount: 180,
+    status:
+      (idx + monthIndex) % 5 === 0
+        ? 'overdue'
+        : (idx + monthIndex) % 3 === 0
+        ? 'pending'
+        : 'paid',
+    updatedAt: `${month}-05`,
+  }))
+);
 
 export const mockAnnouncements: Announcement[] = [
   {
@@ -187,12 +258,12 @@ export const mockAnnouncements: Announcement[] = [
 ];
 
 export const mockStats: Stats = {
-  totalStudents: 120,
-  totalTeachers: 12,
-  totalParents: 95,
-  totalClasses: 8,
-  averageGrade: 16.5,
-  attendanceRate: 94,
+  totalStudents: mockStudents.length,
+  totalTeachers: mockTeachers.length,
+  totalParents: mockParents.length,
+  totalClasses: mockClasses.length,
+  averageGrade: 15.7,
+  attendanceRate: 92,
 };
 
 // Helper functions
