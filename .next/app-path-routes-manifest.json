@@ -4,11 +4,11 @@
   "/page": "/",
   "/[locale]/login/page": "/[locale]/login",
   "/[locale]/page": "/[locale]",
-  "/[locale]/(dashboard)/teacher/courses/page": "/[locale]/teacher/courses",
-  "/[locale]/(dashboard)/parent/child/page": "/[locale]/parent/child",
-  "/[locale]/(dashboard)/admin/students/page": "/[locale]/admin/students",
-  "/[locale]/(dashboard)/teacher/grades/page": "/[locale]/teacher/grades",
   "/[locale]/(dashboard)/admin/announcements/page": "/[locale]/admin/announcements",
+  "/[locale]/(dashboard)/parent/child/page": "/[locale]/parent/child",
   "/[locale]/(dashboard)/student/courses/page": "/[locale]/student/courses",
-  "/[locale]/(dashboard)/dashboard/page": "/[locale]/dashboard"
+  "/[locale]/(dashboard)/teacher/courses/page": "/[locale]/teacher/courses",
+  "/[locale]/(dashboard)/dashboard/page": "/[locale]/dashboard",
+  "/[locale]/(dashboard)/admin/students/page": "/[locale]/admin/students",
+  "/[locale]/(dashboard)/teacher/grades/page": "/[locale]/teacher/grades"
 }
