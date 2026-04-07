@@ -16,6 +16,11 @@ const notoSansArabic = Noto_Sans_Arabic({
 export const metadata: Metadata = {
   title: "مدرسة ابن سينا الخاصة - Ecole Privee Avicenne",
   description: "منصة إدارة مدرسية متكاملة لمدرسة ابن سينا الخاصة بقفصة",
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/images/avicenne/logo.png",
+  },
 };
 
 export default function RootLayout({

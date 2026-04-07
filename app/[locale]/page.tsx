@@ -2,18 +2,12 @@ import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowRight,
-  Award,
-  BookOpen,
   CalendarDays,
   CheckCircle2,
   Globe2,
   MapPin,
   MessageSquare,
-  Newspaper,
   Phone,
-  ShieldCheck,
-  Sparkles,
-  Users,
 } from "lucide-react";
 import { LanguageSwitcher } from "@/components/ui/language-switcher";
 import { Carousel } from "@/components/ui/carousel";
@@ -27,39 +21,41 @@ export default async function LandingPage({
   const isRTL = locale === "ar";
 
   const navItems = [
-    { label: locale === "ar" ? "الإعلانات" : "Announcements", href: "#announcements" },
-    { label: locale === "ar" ? "المرحلة الابتدائية" : "Primary", href: "#stages" },
-    { label: locale === "ar" ? "منهجنا" : "Syllabus", href: "#method" },
-    { label: locale === "ar" ? "عن المدرسة" : "About", href: "#about" },
+    { label: locale === "ar" ? "الأنشطة" : "Activities", href: "#announcements" },
+    { label: locale === "ar" ? "المراحل" : "Stages", href: "#stages" },
+    { label: locale === "ar" ? "المنهج" : "Method", href: "#method" },
+    { label: locale === "ar" ? "اتصل بنا" : "Contact", href: "#contact" },
   ];
+
   const announcements = [
     {
       date: "27-01-2023",
       titleAr: 'مسرحية مقتبسة من نص "التلقيح المدرسي" سنة أولى هـ',
-      titleFr: 'Pièce inspirée du texte "Vaccination scolaire" - 1ère année',
+      titleFr: 'Piece inspiree du texte "Vaccination scolaire" - 1ere annee',
       excerptAr: "عرض تربوي مسرحي ضمن أنشطة السنة الأولى.",
-      excerptFr: "Activité théâtrale éducative réalisée par les élèves de 1ère année.",
+      excerptFr: "Activite theatrale educative realisee par les eleves de 1ere annee.",
     },
     {
       date: "19-12-2022",
       titleAr: "Mini projet : ma famille - السنة الثالثة أ",
-      titleFr: "Mini projet : ma famille - 3ème année A",
+      titleFr: "Mini projet : ma famille - 3eme annee A",
       excerptAr: "مشروع تعاوني لتطوير التعبير الشفهي والكتابي.",
-      excerptFr: "Projet collaboratif pour renforcer l'expression orale et écrite.",
+      excerptFr: "Projet collaboratif pour renforcer l'expression orale et ecrite.",
     },
     {
       date: "13-01-2023",
       titleAr: "زيارة المتحف الأثري بقفصة",
-      titleFr: "Visite du musée archéologique de Gafsa",
+      titleFr: "Visite du musee archeologique de Gafsa",
       excerptAr: "خرجة ميدانية تربوية بعد أسبوع الامتحانات.",
-      excerptFr: "Sortie pédagogique pour découvrir le patrimoine local.",
+      excerptFr: "Sortie pedagogique pour decouvrir le patrimoine local.",
     },
   ];
+
   const schoolPhotos = [
     {
       src: "/images/avicenne/carousel-1.jpg",
       alt: locale === "ar" ? "نشاط مسرحي" : "School theater activity",
-      caption: locale === "ar" ? 'مسرحية مقتبسة من نص "التلقيح المدرسي"' : 'Pièce: "Vaccination scolaire"',
+      caption: locale === "ar" ? 'مسرحية مقتبسة من نص "التلقيح المدرسي"' : 'Piece: "Vaccination scolaire"',
     },
     {
       src: "/images/avicenne/carousel-2.jpg",
@@ -73,499 +69,358 @@ export default async function LandingPage({
     },
   ];
 
+  const pillars = [
+    {
+      title: locale === "ar" ? "تعليم عالمي" : "World-Class Learning",
+      text:
+        locale === "ar"
+          ? "مناهج قوية ومعلمون مؤهلون دوليا مع متابعة فردية لكل طفل."
+          : "A strong curriculum with internationally trained teachers and close individual guidance.",
+    },
+    {
+      title: locale === "ar" ? "تقييم دائم" : "Constant Evaluation",
+      text:
+        locale === "ar"
+          ? "متابعة دورية وتغذية راجعة مستمرة للأولياء والتلاميذ."
+          : "Frequent assessments with continuous feedback for both parents and students.",
+    },
+    {
+      title: locale === "ar" ? "بيئة آمنة" : "Safe Environment",
+      text:
+        locale === "ar"
+          ? "فضاء تربوي حديث يعزز الثقة والاستقلالية والمهارات الحياتية."
+          : "A modern school environment that builds confidence, autonomy, and practical skills.",
+    },
+  ];
+
   return (
-    <div className="min-h-screen bg-[#f7f8fb] text-slate-900">
-      <nav className="sticky top-0 z-50 border-b border-slate-200/70 bg-white/80 backdrop-blur-xl">
-        <div className="mx-auto flex h-20 w-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-          <Link href={`/${locale}`} className="group flex items-center gap-3">
-            <div className="flex h-11 w-11 items-center justify-center overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition group-hover:shadow-md">
+    <div className="min-h-screen bg-[#f4f4ef] text-[#111111]">
+      <style>{`
+        @keyframes ticker {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+      `}</style>
+
+      <header className="sticky top-4 z-50 px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto flex w-full max-w-7xl items-center justify-between rounded-full border-2 border-[#111111] bg-[#111111] px-4 py-3 text-[#f4f4ef] shadow-[0_10px_0_#111111] sm:px-6">
+          <Link href={`/${locale}`} className="flex items-center gap-3">
+            <div className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-full border border-[#f4f4ef]/40 bg-[#f4f4ef]">
               <Image
                 src="/images/avicenne/logo.png"
                 alt="Avicenne logo"
-                width={42}
-                height={42}
+                width={28}
+                height={28}
                 className="object-contain"
                 priority
               />
             </div>
-            <div className="leading-tight">
-              <p className="text-base font-bold">
+            <div className="leading-none">
+              <p className="text-sm font-black uppercase tracking-[0.1em]">
                 {locale === "ar" ? "ابن سينا" : "Avicenne"}
               </p>
-              <p className="text-xs text-slate-500">
+              <p className="mt-1 text-[10px] uppercase tracking-[0.18em] text-[#f4f4ef]/70">
                 {locale === "ar" ? "مدرسة خاصة" : "Private School"}
               </p>
             </div>
           </Link>
 
-          <div className="hidden items-center gap-8 lg:flex">
+          <nav className="hidden items-center gap-7 lg:flex">
             {navItems.map((item) => (
               <a
-                key={item.label}
+                key={item.href}
                 href={item.href}
-                className="text-sm font-medium text-slate-600 transition hover:text-slate-900"
+                className="text-xs font-bold uppercase tracking-[0.2em] text-[#f4f4ef] transition hover:text-white"
               >
                 {item.label}
               </a>
             ))}
-          </div>
+          </nav>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2">
             <LanguageSwitcher currentLocale={locale} />
             <Link
               href={`/${locale}/login`}
-              className="rounded-full bg-slate-900 px-5 py-2 text-sm font-semibold text-white transition hover:bg-slate-700"
+              className="rounded-full border border-[#f4f4ef] bg-[#f4f4ef] px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-[#111111] transition hover:bg-transparent hover:text-[#f4f4ef]"
             >
-              {locale === "ar" ? "تسجيل الدخول" : "Login"}
+              {locale === "ar" ? "دخول" : "Login"}
             </Link>
           </div>
         </div>
-      </nav>
+      </header>
 
       <main>
-        <section className="relative overflow-hidden">
-          <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_right,#dbeafe,transparent_45%),radial-gradient(circle_at_bottom_left,#fde68a,transparent_35%)]" />
-          <div className="mx-auto w-full max-w-7xl px-4 pt-4 sm:px-6 lg:px-8">
-            <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-primary-100 bg-white/85 px-4 py-3 backdrop-blur sm:px-5">
-              <p className="text-sm font-medium text-slate-700">
-                {locale === "ar"
-                  ? "🎓 التسجيل المسبق لسنة 2026 مفتوح الآن - مقاعد محدودة"
-                  : "🎓 Pre-enrollment for 2026 is now open - limited seats"}
-              </p>
-              <a
-                href="#announcements"
-                className="inline-flex items-center rounded-full bg-slate-900 px-4 py-1.5 text-xs font-semibold text-white transition hover:bg-slate-700"
-              >
-                {locale === "ar" ? "آخر المستجدات" : "Latest Updates"}
-              </a>
-            </div>
-          </div>
-          <div className="mx-auto grid w-full max-w-7xl gap-12 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:items-center lg:py-24 lg:px-8">
-            <div>
-              <p className="mb-5 inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.14em] text-slate-600">
-                <Sparkles className="h-4 w-4 text-primary-600" />
-                {locale === "ar"
-                  ? "الخيار الأول لنمو طفلك"
-                  : "First Choice For Child Development"}
-              </p>
+        <section className="px-4 pb-10 pt-10 sm:px-6 lg:px-8 lg:pb-16 lg:pt-14">
+          <div className="mx-auto w-full max-w-7xl rounded-[2.5rem] border-2 border-[#111111] bg-white p-5 shadow-[0_14px_0_#111111] sm:p-8 lg:p-10">
+            <div className="grid gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
+              <div>
+                <p className="inline-flex items-center rounded-full border-2 border-[#111111] px-4 py-1 text-[11px] font-black uppercase tracking-[0.2em]">
+                  <span className="mr-2 inline-block h-2 w-2 rounded-full bg-[#111111]" />
+                  {locale === "ar" ? "تسجيل 2026 مفتوح" : "Admissions 2026 Open"}
+                </p>
 
-              <h1 className="max-w-xl text-4xl font-black leading-tight sm:text-5xl lg:text-6xl">
-                {locale === "ar"
-                  ? "تعليم يصنع شخصية الطفل ويطوّر إمكاناته"
-                  : "A School Experience Built For Growth"}
-              </h1>
-
-              <p className="mt-6 max-w-xl text-base leading-7 text-slate-600 sm:text-lg">
-                {locale === "ar"
-                  ? "في ابن سينا نؤمن أن كل طفل فريد. نقدم تعليما متوازنا أكاديميا وسلوكيا في بيئة حديثة وآمنة."
-                  : "At Avicenne, every child is unique. We combine strong academics, values, and modern methods to build confident learners."}
-              </p>
-
-              <div className="mt-8 flex flex-wrap gap-3">
-                <Link
-                  href={`/${locale}/login`}
-                  className="inline-flex items-center rounded-full bg-primary-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-primary-700"
-                >
-                  {locale === "ar" ? "ابدأ التسجيل" : "Start Enquiry"}
-                  <ArrowRight
-                    className={`h-4 w-4 ${isRTL ? "mr-2 rotate-180" : "ml-2"}`}
-                  />
-                </Link>
-                <a
-                  href="#method"
-                  className="inline-flex items-center rounded-full border border-slate-300 bg-white px-6 py-3 text-sm font-semibold text-slate-700 transition hover:border-slate-900 hover:text-slate-900"
-                >
-                  {locale === "ar" ? "تعرف على منهجنا" : "Our Method"}
-                </a>
-              </div>
-
-              <div className="mt-9 grid max-w-md grid-cols-3 gap-4 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-                {[
-                  ["15K+", locale === "ar" ? "طالب" : "Students"],
-                  ["12+", locale === "ar" ? "سنوات خبرة" : "Years"],
-                  ["98%", locale === "ar" ? "نجاح" : "Success"],
-                ].map(([value, label]) => (
-                  <div key={label} className="text-center">
-                    <p className="text-2xl font-black text-slate-900">{value}</p>
-                    <p className="text-xs text-slate-500">{label}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="relative">
-              <div className="absolute -inset-6 -z-10 rounded-[2rem] bg-gradient-to-br from-primary-400/25 to-accent-300/20 blur-2xl" />
-              <div className="overflow-hidden rounded-[2rem] border border-slate-200 bg-white p-4 shadow-xl">
-                <div className="relative aspect-[4/5] overflow-hidden rounded-[1.4rem]">
-                  <Image
-                    src="/images/avicenne/carousel-1.jpg"
-                    alt={locale === "ar" ? "تلاميذ مدرسة ابن سينا" : "Students at Avicenne"}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <div className="mt-4 grid grid-cols-2 gap-3">
-                  <div className="rounded-2xl bg-slate-50 p-3">
-                    <p className="text-xs text-slate-500">
-                      {locale === "ar" ? "متابعة أسبوعية" : "Weekly Follow-up"}
-                    </p>
-                    <p className="mt-1 text-sm font-semibold">
-                      {locale === "ar" ? "تقييم مستمر" : "Continuous Evaluation"}
-                    </p>
-                  </div>
-                  <div className="rounded-2xl bg-slate-50 p-3">
-                    <p className="text-xs text-slate-500">
-                      {locale === "ar" ? "فريق تربوي" : "Education Team"}
-                    </p>
-                    <p className="mt-1 text-sm font-semibold">
-                      {locale === "ar" ? "خبرة دولية" : "International Expertise"}
-                    </p>
-                  </div>
-                </div>
-                <div className="mt-3 rounded-2xl bg-primary-50 px-3 py-2 text-xs font-semibold text-primary-800">
+                <h1 className="mt-6 text-[2.6rem] font-black uppercase leading-[0.9] tracking-[-0.03em] sm:text-[4rem] lg:text-[6.5rem]">
                   {locale === "ar"
-                    ? "آخر نشاط: مبادرة ومشروع - السنة الثالثة"
-                    : "Latest activity: Initiative & project - Grade 3"}
+                    ? "تعليم يصنع الشخصية"
+                    : "Education That Builds Character"}
+                </h1>
+
+                <p className="mt-6 max-w-2xl border-l-4 border-[#111111] pl-4 text-sm leading-7 text-[#3a3a3a] sm:text-base">
+                  {locale === "ar"
+                    ? "في مدرسة ابن سينا، ندمج الصرامة الأكاديمية مع تنمية المهارات الحياتية في بيئة آمنة وحديثة."
+                    : "At Avicenne, we combine academic discipline with personal growth in a modern and safe learning environment."}
+                </p>
+
+                <div className="mt-8 flex flex-wrap gap-3">
+                  <Link
+                    href={`/${locale}/login`}
+                    className="inline-flex items-center rounded-full border-2 border-[#111111] bg-[#111111] px-6 py-3 text-xs font-black uppercase tracking-[0.15em] text-[#f4f4ef] transition hover:bg-transparent hover:text-[#111111]"
+                  >
+                    {locale === "ar" ? "ابدأ التسجيل" : "Start Enquiry"}
+                    <ArrowRight className={`h-4 w-4 ${isRTL ? "mr-2 rotate-180" : "ml-2"}`} />
+                  </Link>
+                  <a
+                    href="#method"
+                    className="inline-flex items-center rounded-full border-2 border-[#111111] px-6 py-3 text-xs font-black uppercase tracking-[0.15em] transition hover:bg-[#111111] hover:text-[#f4f4ef]"
+                  >
+                    {locale === "ar" ? "اكتشف المنهج" : "Discover Method"}
+                  </a>
+                </div>
+
+                <div className="mt-8 grid max-w-xl grid-cols-3 gap-3 text-center">
+                  {[
+                    ["15K+", locale === "ar" ? "طالب" : "Students"],
+                    ["12+", locale === "ar" ? "سنوات" : "Years"],
+                    ["98%", locale === "ar" ? "نجاح" : "Success"],
+                  ].map(([value, label]) => (
+                    <div key={label} className="border-2 border-[#111111] px-3 py-4">
+                      <p className="text-2xl font-black sm:text-3xl">{value}</p>
+                      <p className="mt-1 text-[11px] font-bold uppercase tracking-[0.14em] text-[#4b4b4b]">{label}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="relative overflow-hidden rounded-[2rem] border-2 border-[#111111]">
+                <Image
+                  src="/images/avicenne/carousel-1.jpg"
+                  alt={locale === "ar" ? "تلاميذ مدرسة ابن سينا" : "Students at Avicenne"}
+                  width={900}
+                  height={1100}
+                  className="h-full w-full object-cover"
+                  priority
+                />
+                <div className="absolute inset-x-0 bottom-0 border-t-2 border-[#111111] bg-[#f4f4ef]/95 p-4">
+                  <p className="text-[11px] font-black uppercase tracking-[0.16em]">
+                    {locale === "ar" ? "آخر نشاط" : "Latest Activity"}
+                  </p>
+                  <p className="mt-2 text-sm font-semibold">
+                    {locale === "ar"
+                      ? "مشروع جماعي وتقديم مسرحي - السنة الثالثة"
+                      : "Group project and theater performance - Grade 3"}
+                  </p>
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        <section id="announcements" className="py-16 sm:py-20">
-          <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
-              <div>
-                <p className="text-xs font-bold uppercase tracking-[0.16em] text-primary-700">
-                  {locale === "ar" ? "آخر المستجدات" : "Latest News"}
-                </p>
-                <h2 className="mt-3 text-3xl font-black sm:text-4xl">
-                  {locale === "ar" ? "الإعلانات والأنشطة" : "Announcements & Activities"}
-                </h2>
-                <p className="mt-3 max-w-2xl text-slate-600">
-                  {locale === "ar"
-                    ? "مستوحاة من محتوى الموقع الرسمي: أنشطة القسم، المشاريع، والزيارات التربوية."
-                    : "Inspired by the official school feed: class activities, projects, and educational visits."}
-                </p>
+        <section className="overflow-hidden border-y-2 border-[#111111] bg-[#111111] py-4 text-[#f4f4ef]">
+          <div className="flex min-w-max" style={{ animation: "ticker 30s linear infinite" }}>
+            {[...Array(2)].map((_, i) => (
+              <div key={i} className="flex items-center whitespace-nowrap">
+                {[
+                  locale === "ar" ? "معلمون مؤهلون دوليا" : "Internationally Trained Teachers",
+                  locale === "ar" ? "تقييم مستمر" : "Continuous Evaluation",
+                  locale === "ar" ? "بيئة آمنة" : "Safe Learning Environment",
+                  locale === "ar" ? "شراكة فعالة مع الأولياء" : "Strong Parent Partnership",
+                ].map((item) => (
+                  <span key={`${i}-${item}`} className="mx-6 text-xs font-black uppercase tracking-[0.2em] sm:text-sm">
+                    {item}
+                  </span>
+                ))}
               </div>
-              <a
-                href="https://www.ecoleavicenne.tn/index"
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center rounded-full border border-slate-300 bg-white px-5 py-2 text-sm font-semibold text-slate-700 transition hover:border-slate-900 hover:text-slate-900"
-              >
-                <Newspaper className={`h-4 w-4 ${isRTL ? "ml-2" : "mr-2"}`} />
-                {locale === "ar" ? "كل الإعلانات" : "View All Posts"}
-              </a>
-            </div>
+            ))}
+          </div>
+        </section>
 
-            <div className="grid gap-5 md:grid-cols-3">
-              {announcements.map((item) => (
+        <section id="method" className="px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
+          <div className="mx-auto w-full max-w-7xl">
+            <p className="text-[11px] font-black uppercase tracking-[0.2em] text-[#555555]">
+              {locale === "ar" ? "منهج ابن سينا" : "Avicenne Method"}
+            </p>
+            <h2 className="mt-3 max-w-3xl text-4xl font-black uppercase leading-[0.9] tracking-[-0.02em] sm:text-6xl">
+              {locale === "ar" ? "نظام واضح. نتائج ملموسة." : "Clear System. Measurable Results."}
+            </h2>
+
+            <div className="mt-8 grid gap-4 md:grid-cols-3">
+              {pillars.map((item) => (
                 <article
-                  key={`${item.date}-${item.titleFr}`}
-                  className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition hover:shadow-md"
+                  key={item.title}
+                  className="group border-2 border-[#111111] bg-white p-6 transition hover:bg-[#111111] hover:text-[#f4f4ef]"
                 >
-                  <p className="inline-flex items-center rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-600">
-                    <CalendarDays className={`h-3.5 w-3.5 ${isRTL ? "ml-1.5" : "mr-1.5"}`} />
-                    {item.date}
-                  </p>
-                  <h3 className="mt-4 text-lg font-bold leading-snug">
-                    {locale === "ar" ? item.titleAr : item.titleFr}
-                  </h3>
-                  <p className="mt-3 text-sm leading-6 text-slate-600">
-                    {locale === "ar" ? item.excerptAr : item.excerptFr}
-                  </p>
-                  <a
-                    href="https://www.ecoleavicenne.tn/index"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="mt-5 inline-flex items-center text-sm font-semibold text-primary-700 hover:text-primary-800"
-                  >
-                    {locale === "ar" ? "المزيد من التفاصيل" : "Plus d'info"}
-                    <ArrowRight className={`h-4 w-4 ${isRTL ? "mr-1.5 rotate-180" : "ml-1.5"}`} />
-                  </a>
+                  <CheckCircle2 className="h-6 w-6" />
+                  <h3 className="mt-5 text-xl font-black uppercase leading-tight">{item.title}</h3>
+                  <p className="mt-4 text-sm leading-7 opacity-80">{item.text}</p>
                 </article>
               ))}
             </div>
           </div>
         </section>
 
-        <section id="method" className="py-16 sm:py-20">
-          <div className="mx-auto grid w-full max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
-            <div>
-              <p className="mb-3 text-xs font-bold uppercase tracking-[0.16em] text-primary-700">
-                {locale === "ar" ? "عن ابن سينا" : "About Avicenne"}
-              </p>
-              <h2 className="text-3xl font-black leading-tight sm:text-4xl">
-                {locale === "ar"
-                  ? "أفضل مدرسة لتطوير شخصية طفلك"
-                  : "A Better Way To Grow Unique Learners"}
-              </h2>
-              <p className="mt-5 leading-7 text-slate-600">
-                {locale === "ar"
-                  ? "نطوّر التعليم بطريقة منهجية تجمع بين الجودة الأكاديمية، التوازن النفسي، والمهارات الحياتية. نرافق كل تلميذ بخطة تعلم واضحة ومتابعة دقيقة."
-                  : "Our learning model blends academic excellence, personal confidence, and practical skills. Every student follows a clear progression with close guidance."}
-              </p>
-              <Link
-                href={`/${locale}/login`}
-                className="mt-7 inline-flex items-center rounded-full bg-slate-900 px-6 py-3 text-sm font-semibold text-white transition hover:bg-slate-700"
-              >
-                {locale === "ar" ? "استفسر الآن" : "Enquire Now"}
-                <ArrowRight
-                  className={`h-4 w-4 ${isRTL ? "mr-2 rotate-180" : "ml-2"}`}
-                />
-              </Link>
-            </div>
-
-            <div className="grid gap-4">
-              {[
-                {
-                  icon: ShieldCheck,
-                  title:
-                    locale === "ar" ? "تعليم عالمي الجودة" : "World-class Education",
-                  text:
-                    locale === "ar"
-                      ? "مناهج قوية ومعلمون مؤهلون دوليا."
-                      : "Strong curriculum with internationally trained teachers.",
-                },
-                {
-                  icon: Users,
-                  title: locale === "ar" ? "قريب من بيئتنا" : "Locally Rooted",
-                  text:
-                    locale === "ar"
-                      ? "محتوى تربوي يحترم الهوية والثقافة."
-                      : "Learning adapted to local culture and values.",
-                },
-                {
-                  icon: CheckCircle2,
-                  title: locale === "ar" ? "تقييم دائم" : "Constant Evaluation",
-                  text:
-                    locale === "ar"
-                      ? "متابعة دورية مع إشعار مستمر للأولياء."
-                      : "Regular progress tracking and parent updates.",
-                },
-              ].map((item) => (
-                <div
-                  key={item.title}
-                  className="flex gap-4 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm"
-                >
-                  <div className="mt-0.5 rounded-xl bg-primary-50 p-2.5">
-                    <item.icon className="h-5 w-5 text-primary-700" />
-                  </div>
-                  <div>
-                    <h3 className="font-bold">{item.title}</h3>
-                    <p className="mt-1 text-sm text-slate-600">{item.text}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section id="stages" className="bg-slate-950 py-16 text-white sm:py-20">
-          <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="mb-10 flex items-end justify-between gap-4">
+        <section id="announcements" className="bg-white px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
+          <div className="mx-auto w-full max-w-7xl">
+            <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
               <div>
-                <p className="text-xs font-bold uppercase tracking-[0.16em] text-white/70">
-                  {locale === "ar" ? "المراحل" : "Key Stages"}
+                <p className="text-[11px] font-black uppercase tracking-[0.2em] text-[#555555]">
+                  {locale === "ar" ? "مستجدات" : "Latest News"}
                 </p>
-                <h2 className="mt-3 text-3xl font-black sm:text-4xl">
-                  {locale === "ar" ? "المسار الدراسي" : "Study Journey"}
+                <h2 className="mt-3 text-4xl font-black uppercase leading-[0.92] tracking-[-0.02em] sm:text-6xl">
+                  {locale === "ar" ? "الإعلانات والأنشطة" : "Announcements & Activities"}
                 </h2>
               </div>
-              <a href="#" className="text-sm text-white/80 transition hover:text-white">
-                {locale === "ar" ? "شاهد كل المراحل" : "See Higher Stages"}
+              <a
+                href="https://www.ecoleavicenne.tn/index"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center border-2 border-[#111111] px-5 py-3 text-xs font-black uppercase tracking-[0.15em] transition hover:bg-[#111111] hover:text-[#f4f4ef]"
+              >
+                {locale === "ar" ? "عرض الكل" : "View All"}
+                <ArrowRight className={`h-4 w-4 ${isRTL ? "mr-2 rotate-180" : "ml-2"}`} />
               </a>
             </div>
 
-            <div className="grid gap-5 md:grid-cols-2">
-              {[
-                {
-                  title: locale === "ar" ? "المرحلة الأولى" : "Stage 1",
-                  subtitle:
-                    locale === "ar"
-                      ? "السنوات 1-2 | الأعمار 5-7"
-                      : "Years 1-2 | Ages 5-7",
-                  icon: BookOpen,
-                },
-                {
-                  title: locale === "ar" ? "المرحلة الثانية" : "Stage 2",
-                  subtitle:
-                    locale === "ar"
-                      ? "السنوات 4-8 | الأعمار 8-12"
-                      : "Years 4-8 | Ages 8-12",
-                  icon: Award,
-                },
-              ].map((stage) => (
-                <div
-                  key={stage.title}
-                  className="rounded-3xl border border-white/15 bg-white/5 p-7"
-                >
-                  <stage.icon className="h-7 w-7 text-accent-300" />
-                  <h3 className="mt-4 text-2xl font-bold">{stage.title}</h3>
-                  <p className="mt-1 text-sm text-white/70">{stage.subtitle}</p>
-                </div>
+            <div className="grid gap-4 lg:grid-cols-3">
+              {announcements.map((item) => (
+                <article key={`${item.date}-${item.titleFr}`} className="border-2 border-[#111111] p-6">
+                  <p className="inline-flex items-center bg-[#111111] px-3 py-1 text-[11px] font-black uppercase tracking-[0.14em] text-[#f4f4ef]">
+                    <CalendarDays className={`h-3.5 w-3.5 ${isRTL ? "ml-2" : "mr-2"}`} />
+                    {item.date}
+                  </p>
+                  <h3 className="mt-5 text-2xl font-black leading-tight">
+                    {locale === "ar" ? item.titleAr : item.titleFr}
+                  </h3>
+                  <p className="mt-4 text-sm leading-7 text-[#4a4a4a]">
+                    {locale === "ar" ? item.excerptAr : item.excerptFr}
+                  </p>
+                </article>
               ))}
             </div>
           </div>
         </section>
 
-        <section id="about" className="py-16 sm:py-20">
-          <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="grid gap-8 rounded-[2rem] border border-slate-200 bg-white p-8 lg:grid-cols-3">
-              <div className="lg:col-span-2">
-                <p className="text-xs font-bold uppercase tracking-[0.16em] text-primary-700">
-                  {locale === "ar" ? "الجوائز" : "Awards"}
-                </p>
-                <h2 className="mt-3 text-3xl font-black sm:text-4xl">
-                  {locale === "ar" ? "مدرسة حائزة على جوائز" : "Award Winning School"}
-                </h2>
-                <p className="mt-4 leading-7 text-slate-600">
-                  {locale === "ar"
-                    ? "تم تكريم مدرسة ابن سينا لالتزامها بجودة التعليم وتنمية شخصية التلميذ. نعتمد منهجا عمليا قائما على البحث والتطوير المستمر."
-                    : "Avicenne is recognized for its consistent commitment to student development, innovative teaching, and measurable outcomes."}
-                </p>
-              </div>
-              <div className="space-y-3">
-                {[
-                  locale === "ar"
-                    ? "أفضل مدرسة نمو مبكر 2024"
-                    : "Best Early Dev School",
-                  locale === "ar" ? "أفضل مدرسة محلية 2025" : "Top School 2025",
-                  locale === "ar" ? "تقدير التميز التربوي" : "Educational Excellence",
-                ].map((badge) => (
-                  <div
-                    key={badge}
-                    className="rounded-2xl bg-slate-50 px-4 py-3 text-sm font-semibold"
-                  >
-                    {badge}
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="py-16 sm:py-20">
-          <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="mb-8">
-              <p className="text-xs font-bold uppercase tracking-[0.16em] text-primary-700">
-                {locale === "ar" ? "معرض المدرسة" : "School Gallery"}
-              </p>
-              <h2 className="mt-3 text-3xl font-black sm:text-4xl">
-                {locale === "ar" ? "أنشطة ومشاريع التلاميذ" : "Student Activities & Projects"}
-              </h2>
-              <p className="mt-3 max-w-2xl text-slate-600">
-                {locale === "ar"
-                  ? "صور واقعية من أنشطة المدرسة والمشاريع الصفية."
-                  : "Real moments from class projects and school activities."}
-              </p>
-            </div>
-            <Carousel photos={schoolPhotos} />
-          </div>
-        </section>
-
-        <section className="py-16 sm:py-20">
-          <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="grid gap-8 rounded-[2rem] border border-slate-200 bg-white p-8 lg:grid-cols-2">
-              <div>
-                <p className="text-xs font-bold uppercase tracking-[0.16em] text-primary-700">
-                  {locale === "ar" ? "رسالة الإدارة" : "A Message From Principal"}
-                </p>
-                <h2 className="mt-3 text-3xl font-black sm:text-4xl">
-                  {locale === "ar"
-                    ? "نصنع أفضل نسخة من كل طفل"
-                    : "Shaping The Best Version Of Every Student"}
-                </h2>
-                <p className="mt-4 leading-7 text-slate-600">
-                  {locale === "ar"
-                    ? "نحن نعمل مع الأسرة كفريق واحد لبناء جيل متوازن، واثق، وقادر على النجاح في العالم المعاصر."
-                    : "We work with families as one team to shape thoughtful, resilient, and future-ready children."}
-                </p>
-              </div>
-              <div className="relative overflow-hidden rounded-3xl">
-                <Image
-                  src="/images/avicenne/carousel-3.jpeg"
-                  alt={locale === "ar" ? "صورة من الأنشطة المدرسية" : "School activity"}
-                  width={800}
-                  height={600}
-                  className="h-full w-full object-cover"
-                />
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="px-4 pb-16 sm:px-6 lg:px-8 lg:pb-20">
-          <div className="mx-auto w-full max-w-7xl rounded-[2rem] bg-primary-700 px-6 py-12 text-white sm:px-10">
-            <h2 className="max-w-2xl text-3xl font-black leading-tight sm:text-4xl">
-              {locale === "ar"
-                ? "انضم إلى ابن سينا وابدأ تجربة تعليمية مميزة لعائلتك"
-                : "Join Avicenne And Build A Strong Future For Your Child"}
-            </h2>
-            <p className="mt-4 max-w-2xl text-primary-100">
-              {locale === "ar"
-                ? "تواصل معنا الآن لمعرفة تفاصيل التسجيل والمقاعد المتاحة."
-                : "Reach out today to know admission details and available seats."}
+        <section id="stages" className="px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
+          <div className="mx-auto w-full max-w-7xl rounded-[2.2rem] border-2 border-[#111111] bg-[#111111] p-6 text-[#f4f4ef] sm:p-10">
+            <p className="text-[11px] font-black uppercase tracking-[0.2em] text-[#f4f4ef]/70">
+              {locale === "ar" ? "المسار الدراسي" : "Study Journey"}
             </p>
+            <h2 className="mt-3 text-4xl font-black uppercase leading-[0.9] tracking-[-0.02em] sm:text-6xl">
+              {locale === "ar" ? "من التأسيس إلى التميز" : "From Foundation To Excellence"}
+            </h2>
+
+            <div className="mt-8 grid gap-4 md:grid-cols-2">
+              <div className="border-2 border-[#f4f4ef] p-6">
+                <p className="text-xs font-black uppercase tracking-[0.14em] text-[#f4f4ef]/70">
+                  {locale === "ar" ? "المرحلة الأولى" : "Stage 1"}
+                </p>
+                <p className="mt-4 text-3xl font-black">
+                  {locale === "ar" ? "السنوات 1-2" : "Years 1-2"}
+                </p>
+                <p className="mt-2 text-sm text-[#f4f4ef]/80">
+                  {locale === "ar" ? "الأعمار 5-7" : "Ages 5-7"}
+                </p>
+              </div>
+              <div className="border-2 border-[#f4f4ef] p-6">
+                <p className="text-xs font-black uppercase tracking-[0.14em] text-[#f4f4ef]/70">
+                  {locale === "ar" ? "المرحلة الثانية" : "Stage 2"}
+                </p>
+                <p className="mt-4 text-3xl font-black">
+                  {locale === "ar" ? "السنوات 4-8" : "Years 4-8"}
+                </p>
+                <p className="mt-2 text-sm text-[#f4f4ef]/80">
+                  {locale === "ar" ? "الأعمار 8-12" : "Ages 8-12"}
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="bg-white px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
+          <div className="mx-auto w-full max-w-7xl border-2 border-[#111111] p-6 sm:p-8">
+            <p className="text-[11px] font-black uppercase tracking-[0.2em] text-[#555555]">
+              {locale === "ar" ? "معرض المدرسة" : "School Gallery"}
+            </p>
+            <h2 className="mt-3 text-4xl font-black uppercase leading-[0.92] tracking-[-0.02em] sm:text-6xl">
+              {locale === "ar" ? "أنشطة ومشاريع حقيقية" : "Real Activities & Projects"}
+            </h2>
+            <p className="mt-4 max-w-3xl text-sm leading-7 text-[#4a4a4a]">
+              {locale === "ar"
+                ? "صور مباشرة من الفصول والأنشطة الميدانية داخل مدرسة ابن سينا."
+                : "Direct snapshots from classes, student projects, and field activities at Avicenne."}
+            </p>
+            <div className="mt-8">
+              <Carousel photos={schoolPhotos} />
+            </div>
+          </div>
+        </section>
+
+        <section id="contact" className="px-4 pb-14 pt-2 sm:px-6 lg:px-8 lg:pb-20">
+          <div className="mx-auto w-full max-w-7xl border-2 border-[#111111] bg-[#111111] p-6 text-[#f4f4ef] sm:p-10">
+            <h2 className="max-w-3xl text-4xl font-black uppercase leading-[0.9] tracking-[-0.02em] sm:text-6xl">
+              {locale === "ar" ? "جاهزون لاستقبالكم" : "Ready To Welcome You"}
+            </h2>
+            <p className="mt-5 max-w-2xl text-sm leading-7 text-[#f4f4ef]/85">
+              {locale === "ar"
+                ? "للاستفسار حول التسجيل والمقاعد المتاحة، تواصل معنا مباشرة عبر الهاتف أو الواتساب."
+                : "For admissions and seat availability, contact us directly by phone or WhatsApp."}
+            </p>
+
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
                 href={`/${locale}/login`}
-                className="inline-flex items-center rounded-full bg-white px-6 py-3 text-sm font-semibold text-primary-700 transition hover:bg-primary-50"
+                className="inline-flex items-center border-2 border-[#f4f4ef] bg-[#f4f4ef] px-6 py-3 text-xs font-black uppercase tracking-[0.14em] text-[#111111] transition hover:bg-transparent hover:text-[#f4f4ef]"
               >
-                {locale === "ar" ? "التسجيل الآن" : "Enquire Now"}
+                {locale === "ar" ? "ابدأ الآن" : "Start Now"}
               </Link>
               <a
                 href="https://wa.me/21697282474"
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center rounded-full border border-white/60 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
+                className="inline-flex items-center border-2 border-[#f4f4ef] px-6 py-3 text-xs font-black uppercase tracking-[0.14em] transition hover:bg-[#f4f4ef] hover:text-[#111111]"
               >
                 <MessageSquare className={`h-4 w-4 ${isRTL ? "ml-2" : "mr-2"}`} />
                 WhatsApp
               </a>
             </div>
+
+            <div className="mt-8 grid gap-3 sm:grid-cols-3">
+              <a
+                href="mailto:administration@ecoleavicenne.tn"
+                className="inline-flex items-center border border-[#f4f4ef]/50 px-4 py-3 text-xs font-bold uppercase tracking-[0.12em]"
+              >
+                <Globe2 className={`h-4 w-4 ${isRTL ? "ml-2" : "mr-2"}`} />
+                administration@ecoleavicenne.tn
+              </a>
+              <a
+                href="tel:+21697282474"
+                className="inline-flex items-center border border-[#f4f4ef]/50 px-4 py-3 text-xs font-bold uppercase tracking-[0.12em]"
+              >
+                <Phone className={`h-4 w-4 ${isRTL ? "ml-2" : "mr-2"}`} />
+                +216 97 282 474
+              </a>
+              <a
+                href="https://www.google.com/maps"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center border border-[#f4f4ef]/50 px-4 py-3 text-xs font-bold uppercase tracking-[0.12em]"
+              >
+                <MapPin className={`h-4 w-4 ${isRTL ? "ml-2" : "mr-2"}`} />
+                {locale === "ar" ? "قفصة" : "Gafsa"}
+              </a>
+            </div>
           </div>
         </section>
       </main>
-
-      <footer className="border-t border-slate-200 bg-white py-10">
-        <div className="mx-auto flex w-full max-w-7xl flex-col gap-8 px-4 text-sm text-slate-600 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8">
-          <div>
-            <p className="font-semibold text-slate-900">
-              {locale === "ar" ? "مدرسة ابن سينا الخاصة" : "Ecole Privee Avicenne"}
-            </p>
-            <p className="mt-1">
-              © 2026 {locale === "ar" ? "جميع الحقوق محفوظة" : "All rights reserved"}
-            </p>
-          </div>
-          <div className="flex flex-wrap items-center gap-5">
-            <a
-              href="mailto:administration@ecoleavicenne.tn"
-              className="inline-flex items-center hover:text-slate-900"
-            >
-              <Globe2 className={`h-4 w-4 ${isRTL ? "ml-2" : "mr-2"}`} />
-              administration@ecoleavicenne.tn
-            </a>
-            <a
-              href="tel:+21697282474"
-              className="inline-flex items-center hover:text-slate-900"
-            >
-              <Phone className={`h-4 w-4 ${isRTL ? "ml-2" : "mr-2"}`} />
-              +216 97 282 474
-            </a>
-            <a
-              href="https://www.google.com/maps"
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center hover:text-slate-900"
-            >
-              <MapPin className={`h-4 w-4 ${isRTL ? "ml-2" : "mr-2"}`} />
-              {locale === "ar" ? "الموقع" : "Location"}
-            </a>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }
