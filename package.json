@@ -1,9 +1,10 @@
 {
   "name": "ecole-avicenne",
   "version": "1.0.0",
+  "type": "module",
   "private": true,
   "scripts": {
-    "clean": "node -e \"require('fs').rmSync('.next',{ recursive: true, force: true })\"",
+    "clean": "node -e \"import('fs').then(f=>f.rmSync('.next',{recursive:true,force:true}))\"",
     "predev": "npm run clean",
     "prebuild": "npm run clean",
     "dev": "next dev",
