@@ -102,24 +102,24 @@ export default async function LandingPage({
         }
       `}</style>
 
-      <header className="sticky top-4 z-50 px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto flex w-full max-w-7xl items-center justify-between rounded-full border-2 border-[#111111] bg-[#111111] px-4 py-3 text-[#f4f4ef] shadow-[0_10px_0_#111111] sm:px-6">
+      <header className="sticky top-2 z-50 px-3 sm:top-4 sm:px-6 lg:px-8">
+        <div className="mx-auto flex w-full max-w-7xl items-center justify-between rounded-full border-2 border-[#111111] bg-[#111111] px-3 py-2.5 text-[#f4f4ef] shadow-[0_6px_0_#111111] sm:px-6 sm:py-3 sm:shadow-[0_10px_0_#111111]">
           <Link href={`/${locale}`} className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-full border border-[#f4f4ef]/40 bg-[#f4f4ef]">
+            <div className="flex h-8 w-8 items-center justify-center overflow-hidden rounded-full border border-[#f4f4ef]/40 bg-[#f4f4ef] sm:h-10 sm:w-10">
               <Image
                 src="/images/avicenne/logo.png"
                 alt="Avicenne logo"
-                width={28}
-                height={28}
+                width={24}
+                height={24}
                 className="object-contain"
                 priority
               />
             </div>
             <div className="leading-none">
-              <p className="text-sm font-black uppercase tracking-[0.1em]">
+              <p className="text-[11px] font-black uppercase tracking-[0.1em] sm:text-sm">
                 {locale === "ar" ? "ابن سينا" : "Avicenne"}
               </p>
-              <p className="mt-1 text-[10px] uppercase tracking-[0.18em] text-[#f4f4ef]/70">
+              <p className="mt-0.5 text-[9px] uppercase tracking-[0.16em] text-[#f4f4ef]/70 sm:mt-1 sm:text-[10px]">
                 {locale === "ar" ? "مدرسة خاصة" : "Private School"}
               </p>
             </div>
@@ -137,11 +137,11 @@ export default async function LandingPage({
             ))}
           </nav>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5 sm:gap-2">
             <LanguageSwitcher currentLocale={locale} />
             <Link
               href={`/${locale}/login`}
-              className="rounded-full border border-[#f4f4ef] bg-[#f4f4ef] px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-[#111111] transition hover:bg-transparent hover:text-[#f4f4ef]"
+              className="rounded-full border border-[#f4f4ef] bg-[#f4f4ef] px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.12em] text-[#111111] transition hover:bg-transparent hover:text-[#f4f4ef] sm:px-4 sm:py-2 sm:text-xs"
             >
               {locale === "ar" ? "دخول" : "Login"}
             </Link>
@@ -150,8 +150,8 @@ export default async function LandingPage({
       </header>
 
       <main>
-        <section className="px-4 pb-10 pt-10 sm:px-6 lg:px-8 lg:pb-16 lg:pt-14">
-          <div className="mx-auto w-full max-w-7xl rounded-[2.5rem] border-2 border-[#111111] bg-white p-5 shadow-[0_14px_0_#111111] sm:p-8 lg:p-10">
+        <section className="px-3 pb-8 pt-8 sm:px-6 lg:px-8 lg:pb-16 lg:pt-14">
+          <div className="mx-auto w-full max-w-7xl rounded-[2rem] border-2 border-[#111111] bg-white p-4 shadow-[0_10px_0_#111111] sm:rounded-[2.5rem] sm:p-8 sm:shadow-[0_14px_0_#111111] lg:p-10">
             <div className="grid gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
               <div>
                 <p className="inline-flex items-center rounded-full border-2 border-[#111111] px-4 py-1 text-[11px] font-black uppercase tracking-[0.2em]">
@@ -159,13 +159,13 @@ export default async function LandingPage({
                   {locale === "ar" ? "تسجيل 2026 مفتوح" : "Admissions 2026 Open"}
                 </p>
 
-                <h1 className="mt-6 text-[2.6rem] font-black uppercase leading-[0.9] tracking-[-0.03em] sm:text-[4rem] lg:text-[6.5rem]">
+                <h1 className="mt-5 text-[2rem] font-black uppercase leading-[0.9] tracking-[-0.03em] sm:text-[4rem] lg:text-[6.5rem]">
                   {locale === "ar"
                     ? "تعليم يصنع الشخصية"
                     : "Education That Builds Character"}
                 </h1>
 
-                <p className="mt-6 max-w-2xl border-l-4 border-[#111111] pl-4 text-sm leading-7 text-[#3a3a3a] sm:text-base">
+                <p className="mt-5 max-w-2xl border-l-4 border-[#111111] pl-3 text-xs leading-6 text-[#3a3a3a] sm:pl-4 sm:text-base sm:leading-7">
                   {locale === "ar"
                     ? "في مدرسة ابن سينا، ندمج الصرامة الأكاديمية مع تنمية المهارات الحياتية في بيئة آمنة وحديثة."
                     : "At Avicenne, we combine academic discipline with personal growth in a modern and safe learning environment."}
@@ -187,21 +187,21 @@ export default async function LandingPage({
                   </a>
                 </div>
 
-                <div className="mt-8 grid max-w-xl grid-cols-3 gap-3 text-center">
+                <div className="mt-7 grid max-w-xl grid-cols-3 gap-2 text-center sm:gap-3">
                   {[
                     ["15K+", locale === "ar" ? "طالب" : "Students"],
                     ["12+", locale === "ar" ? "سنوات" : "Years"],
                     ["98%", locale === "ar" ? "نجاح" : "Success"],
                   ].map(([value, label]) => (
-                    <div key={label} className="border-2 border-[#111111] px-3 py-4">
-                      <p className="text-2xl font-black sm:text-3xl">{value}</p>
+                    <div key={label} className="border-2 border-[#111111] px-2 py-3 sm:px-3 sm:py-4">
+                      <p className="text-xl font-black sm:text-3xl">{value}</p>
                       <p className="mt-1 text-[11px] font-bold uppercase tracking-[0.14em] text-[#4b4b4b]">{label}</p>
                     </div>
                   ))}
                 </div>
               </div>
 
-              <div className="relative overflow-hidden rounded-[2rem] border-2 border-[#111111]">
+              <div className="relative order-first overflow-hidden rounded-[1.5rem] border-2 border-[#111111] lg:order-none lg:rounded-[2rem]">
                 <Image
                   src="/images/avicenne/carousel-1.jpg"
                   alt={locale === "ar" ? "تلاميذ مدرسة ابن سينا" : "Students at Avicenne"}

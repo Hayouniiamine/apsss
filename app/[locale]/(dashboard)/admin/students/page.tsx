@@ -150,7 +150,7 @@ export default function AdminStudentsPage() {
         </p>
       </div>
 
-      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-5">
+      <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-5">
         <div className="card p-4"><p className="text-sm text-gray-600">{locale === "ar" ? "مدفوع" : "Paye"}</p><p className="text-2xl font-bold text-emerald-600">{paymentSummary.paid}</p></div>
         <div className="card p-4"><p className="text-sm text-gray-600">{locale === "ar" ? "قيد الانتظار" : "En attente"}</p><p className="text-2xl font-bold text-amber-600">{paymentSummary.pending}</p></div>
         <div className="card p-4"><p className="text-sm text-gray-600">{locale === "ar" ? "متأخر" : "En retard"}</p><p className="text-2xl font-bold text-red-600">{paymentSummary.overdue}</p></div>
@@ -158,14 +158,14 @@ export default function AdminStudentsPage() {
         <div className="card p-4"><p className="text-sm text-gray-600">{locale === "ar" ? "تلاميذ غير مدفوعين" : "Eleves non payes"}</p><p className="text-2xl font-bold text-rose-700">{financeStats.unpaidStudentsCount}</p></div>
       </div>
 
-      <div className="grid gap-6 xl:grid-cols-12">
-        <section className="card p-5 xl:col-span-3">
+      <div className="grid gap-4 xl:grid-cols-12">
+        <section className="card p-4 sm:p-5 xl:col-span-3">
           <h2 className="mb-3 font-semibold">{locale === "ar" ? "قائمة الأقسام" : "Liste des classes"}</h2>
           <form onSubmit={addClass} className="mb-3 flex gap-2">
             <input className="input-field px-3 py-2 text-sm" placeholder={locale === "ar" ? "قسم جديد" : "Nouvelle classe"} value={newClassName} onChange={(e) => setNewClassName(e.target.value)} />
             <button className="btn-primary px-3 text-sm" type="submit">+</button>
           </form>
-          <div className="space-y-2">
+          <div className="space-y-2 max-h-[260px] overflow-y-auto pr-1 xl:max-h-none">
             {classes.map((cls) => (
               <div key={cls.id} className={`rounded-lg border p-3 ${selectedClassId === cls.id ? "border-primary-500 bg-primary-50" : "border-gray-200 bg-white"}`}>
                 <button className="w-full text-left text-sm font-medium" onClick={() => { setSelectedClassId(cls.id); setSelectedStudentId(""); }}>{cls.name}</button>
@@ -178,14 +178,14 @@ export default function AdminStudentsPage() {
           </div>
         </section>
 
-        <section className="card p-5 xl:col-span-4">
+        <section className="card p-4 sm:p-5 xl:col-span-4">
           <h2 className="mb-3 font-semibold">{locale === "ar" ? "قائمة التلاميذ" : "Liste des eleves"}</h2>
           <form onSubmit={addStudent} className="mb-3 space-y-2">
             <input className="input-field px-3 py-2 text-sm" placeholder={locale === "ar" ? "اسم التلميذ" : "Nom de l'eleve"} value={newStudentName} onChange={(e) => setNewStudentName(e.target.value)} />
             <input type="date" className="input-field px-3 py-2 text-sm" value={newStudentDob} onChange={(e) => setNewStudentDob(e.target.value)} />
             <button className="btn-primary w-full text-sm" type="submit">{locale === "ar" ? "إضافة تلميذ" : "Ajouter l'eleve"}</button>
           </form>
-          <div className="max-h-[520px] space-y-2 overflow-y-auto pr-1">
+          <div className="max-h-[300px] space-y-2 overflow-y-auto pr-1 sm:max-h-[420px] xl:max-h-[520px]">
             {studentsInClass.map((student) => (
               <div key={student.id} className={`rounded-lg border p-3 ${selectedStudent?.id === student.id ? "border-primary-500 bg-primary-50" : "border-gray-200 bg-white"}`}>
                 <button className="w-full text-left font-medium" onClick={() => setSelectedStudentId(student.id)}>{student.name}</button>
@@ -198,7 +198,7 @@ export default function AdminStudentsPage() {
           </div>
         </section>
 
-        <section className="card p-5 xl:col-span-5">
+        <section className="card p-4 sm:p-5 xl:col-span-5">
           <h2 className="mb-3 font-semibold">{locale === "ar" ? "ملف التلميذ" : "Fiche eleve"}</h2>
           {selectedStudent ? (
             <div className="space-y-4">
@@ -211,13 +211,13 @@ export default function AdminStudentsPage() {
 
               <div>
                 <h3 className="mb-2 text-sm font-semibold">{locale === "ar" ? "حالة دفع الرسوم" : "Etat des paiements (9 mois)"}</h3>
-                <div className="space-y-2">
+                <div className="max-h-[240px] space-y-2 overflow-y-auto pr-1 sm:max-h-[320px]">
                   {selectedStudentPayments.map((payment) => (
                     <div key={payment.id} className="rounded-lg border border-gray-200 p-3">
-                      <div className="flex items-center justify-between gap-2">
+                      <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                         <p className="text-sm font-medium">{payment.month} - {payment.amount} TND</p>
                         <select
-                          className="rounded-md border border-gray-300 bg-white px-2 py-1 text-xs"
+                          className="rounded-md border border-gray-300 bg-white px-2 py-1 text-xs sm:min-w-[170px]"
                           value={payment.status}
                           onChange={(e) => updatePaymentStatus(payment.id, e.target.value as PaymentStatus["status"])}
                         >
@@ -234,7 +234,7 @@ export default function AdminStudentsPage() {
 
               <div>
                 <h3 className="mb-2 text-sm font-semibold">{locale === "ar" ? "ملاحظات المعلمين (10)" : "Remarques des enseignants (10)"}</h3>
-                <div className="max-h-[240px] space-y-2 overflow-y-auto pr-1">
+                <div className="max-h-[220px] space-y-2 overflow-y-auto pr-1 sm:max-h-[260px]">
                   {selectedStudentRemarks.map((remark) => (
                     <div key={remark.id} className="rounded-lg bg-amber-50 p-3 text-sm">
                       <p>{remark.message}</p>

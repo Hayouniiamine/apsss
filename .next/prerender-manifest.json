@@ -1,1 +1,61 @@
-{"version":4,"routes":{"/ar":{},"/fr":{},"/ar/login":{},"/fr/login":{},"/ar/dashboard":{},"/fr/dashboard":{}},"dynamicRoutes":{"/[locale]":{"dataRoute":null,"dataRouteRegex":null,"fallback":null,"fallbackRevalidate":false,"fallbackSourceRoute":"/[locale]","routeRegex":"^\\/([^/]+?)(?:\\/)?$","allowHeader":[]},"/[locale]/login":{"dataRoute":null,"dataRouteRegex":null,"fallback":null,"fallbackRevalidate":false,"fallbackSourceRoute":"/[locale]/login","routeRegex":"^\\/([^/]+?)\\/login(?:\\/)?$","allowHeader":[]},"/[locale]/dashboard":{"dataRoute":null,"dataRouteRegex":null,"fallback":null,"fallbackRevalidate":false,"fallbackSourceRoute":"/[locale]/dashboard","routeRegex":"^\\/([^/]+?)\\/dashboard(?:\\/)?$","allowHeader":[]}},"notFoundRoutes":[],"preview":{"previewModeId":"4a0c6d8aa82d0e718ee191d26d28876c","previewModeSigningKey":"530f9c7ae9624fcab8f13c3c935be11513566846e2599afc37a7c48be6fdac96","previewModeEncryptionKey":"7130398c9070dc25d818252917ce584059650fe2182ec596288d2e37213de25d"}}
+{
+  "version": 4,
+  "routes": {
+    "/_not-found": {
+      "initialStatus": 404,
+      "experimentalBypassFor": [
+        {
+          "type": "header",
+          "key": "next-action"
+        },
+        {
+          "type": "header",
+          "key": "content-type",
+          "value": "multipart/form-data;.*"
+        }
+      ],
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/_not-found",
+      "dataRoute": "/_not-found.rsc",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/": {
+      "experimentalBypassFor": [
+        {
+          "type": "header",
+          "key": "next-action"
+        },
+        {
+          "type": "header",
+          "key": "content-type",
+          "value": "multipart/form-data;.*"
+        }
+      ],
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/",
+      "dataRoute": "/index.rsc",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    }
+  },
+  "dynamicRoutes": {},
+  "notFoundRoutes": [],
+  "preview": {
+    "previewModeId": "e73b67357b170288486df1dec42a6c5f",
+    "previewModeSigningKey": "df9e41428255c089fae5986a1f3317cc13de6d22fb85ca3e6e040f397ce361fc",
+    "previewModeEncryptionKey": "8e769d0e43ed1cf1e4459d0907f0779f33f2d478c976afd8e06f713b023b4cd1"
+  }
+}
