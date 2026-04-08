@@ -162,16 +162,12 @@ export default function ParentChildPage() {
                     <p className="text-xs text-gray-400 mt-0.5">{formatDate(grade.date, locale)}</p>
                   </div>
                   <div className="flex items-center gap-3">
-                    <div className="w-20 h-1.5 bg-gray-200 rounded-full overflow-hidden">
-                      <div
-                        className={`h-full rounded-full ${
-                          percentage >= 80
-                            ? "bg-emerald-500"
-                            : percentage >= 60
-                            ? "bg-amber-500"
-                            : "bg-red-500"
-                        }`}
-                        style={{ width: `${percentage}%` }}
+                    <div className="w-20">
+                      <progress
+                        className="w-full h-1.5 rounded-full"
+                        value={percentage}
+                        max={100}
+                        aria-label={`${percentage.toFixed(0)}%`}
                       />
                     </div>
                     <span className={`font-bold text-sm ${

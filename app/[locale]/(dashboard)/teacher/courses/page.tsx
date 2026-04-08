@@ -218,6 +218,8 @@ export default function TeacherCoursesPage() {
                 value={courseClassId}
                 onChange={(e) => setCourseClassId(e.target.value)}
                 className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-primary-500 outline-none"
+                aria-label={t("القسم", "Classe")}
+                title={t("القسم", "Classe")}
               >
                 {teacherClasses.map((c) => (
                   <option key={c.id} value={c.id}>{c.name}</option>
@@ -255,6 +257,8 @@ export default function TeacherCoursesPage() {
                 value={homeworkClassId}
                 onChange={(e) => setHomeworkClassId(e.target.value)}
                 className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-primary-500 outline-none"
+                aria-label={t("القسم", "Classe")}
+                title={t("القسم", "Classe")}
               >
                 {teacherClasses.map((c) => (
                   <option key={c.id} value={c.id}>{c.name}</option>
@@ -268,6 +272,8 @@ export default function TeacherCoursesPage() {
                   onChange={(e) => setHomeworkDue(e.target.value)}
                   required
                   className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-primary-500 outline-none"
+                  aria-label={t("آخر أجل", "Date limite")}
+                  title={t("آخر أجل", "Date limite")}
                 />
               </div>
               <textarea
@@ -301,6 +307,8 @@ export default function TeacherCoursesPage() {
                 value={remarkStudentId}
                 onChange={(e) => setRemarkStudentId(e.target.value)}
                 className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-primary-500 outline-none"
+                aria-label={t("التلميذ", "Élève")}
+                title={t("التلميذ", "Élève")}
               >
                 {allStudentsInClasses.map((s) => (
                   <option key={s.id} value={s.id}>
@@ -365,6 +373,8 @@ export default function TeacherCoursesPage() {
                       <button
                         onClick={() => setDeleteTarget({ type: "course", id: course.id })}
                         className="p-1.5 text-gray-300 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors opacity-0 group-hover:opacity-100"
+                        aria-label={t("حذف الدرس", "Supprimer le cours")}
+                        title={t("حذف الدرس", "Supprimer le cours")}
                       >
                         <Trash2 className="w-4 h-4" />
                       </button>
@@ -416,6 +426,8 @@ export default function TeacherCoursesPage() {
                       <button
                         onClick={() => setDeleteTarget({ type: "homework", id: hw.id })}
                         className="p-1.5 text-gray-300 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors opacity-0 group-hover:opacity-100"
+                        aria-label={t("حذف الواجب", "Supprimer le devoir")}
+                        title={t("حذف الواجب", "Supprimer le devoir")}
                       >
                         <Trash2 className="w-4 h-4" />
                       </button>
@@ -459,6 +471,8 @@ export default function TeacherCoursesPage() {
                       <button
                         onClick={() => setDeleteTarget({ type: "remark", id: remark.id })}
                         className="p-1.5 text-gray-300 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors opacity-0 group-hover:opacity-100 flex-shrink-0"
+                        aria-label={t("حذف الملاحظة", "Supprimer la remarque")}
+                        title={t("حذف الملاحظة", "Supprimer la remarque")}
                       >
                         <Trash2 className="w-4 h-4" />
                       </button>
@@ -479,7 +493,7 @@ export default function TeacherCoursesPage() {
               <h3 className="text-lg font-bold text-gray-900">
                 {t("تأكيد الحذف", "Confirmer la suppression")}
               </h3>
-              <button onClick={() => setDeleteTarget(null)} className="p-1 rounded-lg hover:bg-gray-100">
+              <button onClick={() => setDeleteTarget(null)} className="p-1 rounded-lg hover:bg-gray-100" aria-label={t("إغلاق", "Fermer")} title={t("إغلاق", "Fermer")}>
                 <X className="w-5 h-5 text-gray-500" />
               </button>
             </div>

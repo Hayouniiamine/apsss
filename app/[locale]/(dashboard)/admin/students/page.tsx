@@ -326,6 +326,7 @@ export default function AdminStudentsPage() {
             <button
               className="btn-primary px-3 text-sm flex items-center gap-1 whitespace-nowrap"
               type="submit"
+              aria-label={t("إضافة قسم", "Ajouter une classe")}
             >
               <Plus className="w-4 h-4" />
             </button>
@@ -354,6 +355,8 @@ export default function AdminStudentsPage() {
                         value={editingClassName}
                         onChange={(e) => setEditingClassName(e.target.value)}
                         autoFocus
+                        aria-label={t("تعديل اسم القسم", "Modifier le nom de la classe")}
+                        title={t("تعديل اسم القسم", "Modifier le nom de la classe")}
                         onKeyDown={(e) => {
                           if (e.key === "Enter") saveEditClass(cls.id);
                           if (e.key === "Escape") setEditingClassId(null);
@@ -439,6 +442,8 @@ export default function AdminStudentsPage() {
                 className="input-field px-3 py-2 text-sm border border-gray-300 rounded-lg flex-1 focus:ring-2 focus:ring-primary-500 outline-none"
                 value={newStudentDob}
                 onChange={(e) => setNewStudentDob(e.target.value)}
+                aria-label={t("تاريخ الميلاد", "Date de naissance")}
+                title={t("تاريخ الميلاد", "Date de naissance")}
               />
               <button className="btn-primary flex items-center gap-1 px-3 text-sm whitespace-nowrap" type="submit">
                 <Plus className="w-4 h-4" />
@@ -484,6 +489,8 @@ export default function AdminStudentsPage() {
                       <button
                         onClick={() => setShowDeleteStudentModal(student.id)}
                         className="p-1 text-gray-300 hover:text-red-600 hover:bg-red-50 rounded"
+                        aria-label={t("حذف التلميذ", "Supprimer l'élève")}
+                        title={t("حذف التلميذ", "Supprimer l'élève")}
                       >
                         <Trash2 className="w-3.5 h-3.5" />
                       </button>
@@ -576,6 +583,8 @@ export default function AdminStudentsPage() {
                         <select
                           className="text-xs border border-gray-300 rounded-lg px-2 py-1.5 bg-white focus:ring-2 focus:ring-primary-500 outline-none"
                           value={payment.status}
+                          aria-label={t("حالة الدفع", "Statut du paiement")}
+                          title={t("حالة الدفع", "Statut du paiement")}
                           onChange={(e) =>
                             updatePaymentStatus(payment.id, e.target.value as PaymentStatus["status"])
                           }
@@ -633,6 +642,8 @@ export default function AdminStudentsPage() {
               <button
                 onClick={() => setShowDeleteClassModal(null)}
                 className="p-1 rounded-lg hover:bg-gray-100"
+                aria-label={t("إغلاق", "Fermer")}
+                title={t("إغلاق", "Fermer")}
               >
                 <X className="w-5 h-5 text-gray-500" />
               </button>
@@ -672,6 +683,8 @@ export default function AdminStudentsPage() {
               <button
                 onClick={() => setShowDeleteStudentModal(null)}
                 className="p-1 rounded-lg hover:bg-gray-100"
+                aria-label={t("إغلاق", "Fermer")}
+                title={t("إغلاق", "Fermer")}
               >
                 <X className="w-5 h-5 text-gray-500" />
               </button>

@@ -181,6 +181,8 @@ export default function GradesPage() {
             value={selectedCourse}
             onChange={(e) => setSelectedCourse(e.target.value)}
             className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 outline-none text-sm"
+            aria-label={t("تصفية حسب المادة", "Filtrer par matière")}
+            title={t("تصفية حسب المادة", "Filtrer par matière")}
           >
             <option value="all">{t("جميع المواد", "Toutes les matières")}</option>
             {teacherCourses.map((c) => (
@@ -298,7 +300,7 @@ export default function GradesPage() {
                 <GraduationCap className="w-5 h-5 text-primary-600" />
                 {editingGrade ? t("تعديل الدرجة", "Modifier la note") : t("إضافة درجة جديدة", "Ajouter une nouvelle note")}
               </h2>
-              <button onClick={() => setShowAddModal(false)} className="p-1.5 rounded-lg hover:bg-gray-100">
+              <button onClick={() => setShowAddModal(false)} className="p-1.5 rounded-lg hover:bg-gray-100" aria-label={t("إغلاق", "Fermer")} title={t("إغلاق", "Fermer")}>
                 <X className="w-5 h-5 text-gray-500" />
               </button>
             </div>
@@ -309,6 +311,8 @@ export default function GradesPage() {
                   value={formStudentId}
                   onChange={(e) => setFormStudentId(e.target.value)}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 outline-none text-sm"
+                  aria-label={t("التلميذ", "Élève")}
+                  title={t("التلميذ", "Élève")}
                 >
                   {allStudents.map((s) => (
                     <option key={s.id} value={s.id}>{s.name}</option>
@@ -321,6 +325,8 @@ export default function GradesPage() {
                   value={formCourseId}
                   onChange={(e) => setFormCourseId(e.target.value)}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 outline-none text-sm"
+                  aria-label={t("المادة", "Matière")}
+                  title={t("المادة", "Matière")}
                 >
                   {teacherCourses.map((c) => (
                     <option key={c.id} value={c.id}>{c.title}</option>
@@ -347,6 +353,8 @@ export default function GradesPage() {
                     value={formType}
                     onChange={(e) => setFormType(e.target.value as typeof formType)}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 outline-none text-sm"
+                    aria-label={t("نوع التقييم", "Type d'évaluation")}
+                    title={t("نوع التقييم", "Type d'évaluation")}
                   >
                     <option value="exam">{t("اختبار", "Examen")}</option>
                     <option value="quiz">{t("اختبار قصير", "Contrôle")}</option>
@@ -362,6 +370,8 @@ export default function GradesPage() {
                   value={formDate}
                   onChange={(e) => setFormDate(e.target.value)}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 outline-none text-sm"
+                  aria-label={t("تاريخ التقييم", "Date de l'évaluation")}
+                  title={t("تاريخ التقييم", "Date de l'évaluation")}
                 />
               </div>
               <div>

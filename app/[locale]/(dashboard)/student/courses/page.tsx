@@ -169,13 +169,12 @@ export default function StudentCoursesPage() {
                 <div className="flex items-end justify-between mt-2">
                   <div className="w-full me-3">
                     <div className="h-1.5 bg-gray-200 rounded-full overflow-hidden">
-                      <div
-                        className={`h-full rounded-full ${
-                          pct >= 80 ? "bg-emerald-500" : pct >= 60 ? "bg-blue-500" : "bg-red-500"
-                        }`}
-                        style={{ width: `${pct}%` }}
+                      <progress
+                        className="w-full h-full rounded-full"
+                        value={pct}
+                        max={100}
+                        aria-label={`${pct.toFixed(0)}%`}
                       />
-                    </div>
                   </div>
                   <span className={`text-lg font-bold flex-shrink-0 ${
                     pct >= 80 ? "text-emerald-600" : pct >= 60 ? "text-blue-600" : "text-red-600"
