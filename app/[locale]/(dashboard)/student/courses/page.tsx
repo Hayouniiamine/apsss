@@ -175,6 +175,7 @@ export default function StudentCoursesPage() {
                         max={100}
                         aria-label={`${pct.toFixed(0)}%`}
                       />
+                    </div>
                   </div>
                   <span className={`text-lg font-bold flex-shrink-0 ${
                     pct >= 80 ? "text-emerald-600" : pct >= 60 ? "text-blue-600" : "text-red-600"
